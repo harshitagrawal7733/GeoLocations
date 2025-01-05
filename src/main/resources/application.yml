@@ -1,0 +1,9 @@
+spring:
+  data:
+    elasticsearch:
+      client:
+        sniff: true
+        cluster-nodes: localhost:9200
+        cluster-name: my-cluster
+  main:
+    allow-bean-definition-overriding: true

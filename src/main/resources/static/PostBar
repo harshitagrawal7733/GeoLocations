@@ -1,0 +1,39 @@
+curl --location 'http://localhost:9200/bars_geo_locations/_bulk?pretty=null' \
+--header 'Content-Type: application/json' \
+--header 'Cookie: JSESSIONID=B257673AEB0EE721365BDF6E25F6E40E' \
+--data '{ "index": { "_id": "4" } }
+{ "name": "The Bengal Lounge", "coordinates": { "lat": 22.5415, "lon": 88.3439 }, "address": "5, Park Street, Kolkata, West Bengal" }
+
+{ "index": { "_id": "5" } }
+{ "name": "Shisha Reincarnated", "coordinates": { "lat": 22.5416, "lon": 88.3441 }, "address": "23, Park Street, Kolkata, West Bengal" }
+
+{ "index": { "_id": "6" } }
+{ "name": "The Blue Poppy", "coordinates": { "lat": 22.5412, "lon": 88.3443 }, "address": "12, Park Street, Kolkata, West Bengal" }
+
+{ "index": { "_id": "7" } }
+{ "name": "The Kebabish", "coordinates": { "lat": 22.5409, "lon": 88.3440 }, "address": "7, Park Street, Kolkata, West Bengal" }
+
+{ "index": { "_id": "8" } }
+{ "name": "Trincas", "coordinates": { "lat": 22.5417, "lon": 88.3445 }, "address": "17, Park Street, Kolkata, West Bengal" }
+
+{ "index": { "_id": "9" } }
+{ "name": "Roxy", "coordinates": { "lat": 22.5413, "lon": 88.3446 }, "address": "20, Park Street, Kolkata, West Bengal" }
+
+{ "index": { "_id": "10" } }
+{ "name": "Someplace Else", "coordinates": { "lat": 22.5408, "lon": 88.3437 }, "address": "14, Park Street, Kolkata, West Bengal" }
+
+{ "index": { "_id": "11" } }
+{ "name": "The Irish House", "coordinates": { "lat": 22.5404, "lon": 88.3442 }, "address": "19, Park Street, Kolkata, West Bengal" }
+
+{ "index": { "_id": "12" } }
+{ "name": "The Lalit Great Eastern", "coordinates": { "lat": 22.5411, "lon": 88.3438 }, "address": "1, Park Street, Kolkata, West Bengal" }
+
+{ "index": { "_id": "13" } }
+{ "name": "The Park", "coordinates": { "lat": 22.5419, "lon": 88.3444 }, "address": "17, Park Street, Kolkata, West Bengal" }
+
+{ "index": { "_id": "14" } }
+{ "name": "The Bling", "coordinates": { "lat": 22.5405, "lon": 88.3436 }, "address": "9, Park Street, Kolkata, West Bengal" }
+
+{ "index": { "_id": "15" } }
+{ "name": "The 8th Floor", "coordinates": { "lat": 22.5402, "lon": 88.3447 }, "address": "25, Park Street, Kolkata, West Bengal" }
+'

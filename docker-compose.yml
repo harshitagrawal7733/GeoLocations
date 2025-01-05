@@ -1,0 +1,54 @@
+version: '3'
+services:
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.17.10
+    container_name: elasticsearch
+    ports:
+      - "9200:9200"
+    environment:
+      - discovery.type=single-node
+      - ES_JAVA_OPTS=-Xms1g -Xmx1g
+      - xpack.security.enabled=false
+    networks:
+      - elastic
+    stdin_open: true
+    tty: true
+    user: "1000:1000"  # Run as non-root user (elasticsearch user)
+    volumes:
+      - ./init.sh:/usr/share/elasticsearch/init.sh
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9200"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  kibana:
+    image: docker.elastic.co/kibana/kibana:7.17.10
+    container_name: kibana
+    ports:
+      - "5601:5601"
+    environment:
+      - ELASTICSEARCH_URL=http://elasticsearch:9200
+    depends_on:
+      elasticsearch:
+        condition: service_healthy
+    networks:
+      - elastic
+    stdin_open: true
+    tty: true
+
+  init-script:
+    image: alpine:latest
+    container_name: init-script
+    command: /bin/sh -c "addgroup -S elasticsearch && adduser -S elasticsearch -G elasticsearch && chown elasticsearch:elasticsearch /usr/share/elasticsearch/init.sh && chmod +x /usr/share/elasticsearch/init.sh && su -s /bin/sh elasticsearch -c '/usr/share/elasticsearch/init.sh'"
+    depends_on:
+      - elasticsearch
+    networks:
+      - elastic
+    volumes:
+      - ./init.sh:/usr/share/elasticsearch/init.sh
+    restart: "no"
+
+networks:
+  elastic:
+    driver: bridge
